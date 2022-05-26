@@ -16,7 +16,7 @@
 %>
 
 <%
-    String select_stock = request.getParameter("serchstock");
+    String select_stock = request.getParameter("searchstock");
     String crawlingtable = select_stock + "crawling";
 %>
 
@@ -191,8 +191,8 @@
             <div style="padding: 30px;" class="sub-content bg-white">
                 <div class="select_st">
                     종목 선택
-                    <form method="post" name="frm">
-                        <select name="serchstock" id="serchstock" class="selectpicker" onchange="handleOnChange(this)">
+                    <form method="post" name="frm" action="prediction_result">
+                        <select name="searchstock" id="searchstock" class="selectpicker" >
                             <option value="">선택</option>
                             <optgroup label="반도체">
                                 <option value="s033160">엠케이전자</option>
@@ -232,6 +232,7 @@
                                 <option value="009290">광동제약</option>
                             </optgroup>
                         </select>
+                        <input type="submit" value="🔍" style="font-size:x-small">
                     </form>
                 </div>
 

@@ -199,6 +199,8 @@
 
                     <div class="setcenter">
                         <div class="top5box" style="margin-top:10px; ">
+                            <h3 class="text-center" >금융</h3>
+
 
                             <table class="type09">
 
@@ -257,10 +259,13 @@
                 <hr>
                 <div class="sub-section">
                     <div class="setcost">
+                        <form method="post" action="./recommend_searchcost">
                         1주당 희망 금액(₩) :
-                        <input type="text">
+                        <input type="text" name="min">
                         ~
-                        <input type="text">
+                        <input type="text" name="max">
+                        <input type="submit" value="🔍">
+                        </form>
 
                     </div>
 

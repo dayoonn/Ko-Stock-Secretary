@@ -3,8 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="java.util.Calendar" %>
-<%@ page import="java.text.SimpleDateFormat"%>
-
+<%@ page import="java.text.SimpleDateFormat" %>
 
 
 <%
@@ -12,15 +11,14 @@
     String Today = new java.text.SimpleDateFormat("yy/MM/dd").format(new java.util.Date());
 
     Calendar day = Calendar.getInstance();
-    day.add(Calendar.DATE , +1);
+    day.add(Calendar.DATE, +1);
     String Nextday = new java.text.SimpleDateFormat("yy/MM/dd").format(day.getTime());
 %>
 
 <%
-    String select_stock = request.getParameter("serchstock");
+    String select_stock = request.getParameter("searchstock");
+
 %>
-
-
 
 
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
@@ -193,12 +191,12 @@
             <div style="padding: 30px;" class="sub-content bg-white">
                 <div class="select_st">
                     종목 선택
-                    <form method="post" action="prediction+'select_stock'" name="frm">
-                        <select type="submit" name="serchstock" id="serchstock" class="selectpicker" onchange="this.form.submit()">
+                    <form method="post" name="frm" action="prediction_result">
+                        <select name="searchstock" id="searchstock" class="selectpicker" >
                             <option value="">선택</option>
                             <optgroup label="반도체">
-                                <option value="s33160">엠케이전자</option>
-                                <option value="46890">서울반도체</option>
+                                <option value="s033160">엠케이전자</option>
+                                <option value="s046890">서울반도체</option>
                                 <option value="108320">LX세미콘</option>
                                 <option value="240810">원익IPS</option>
                                 <option value="5290">동진세미켐</option>
@@ -234,40 +232,70 @@
                                 <option value="009290">광동제약</option>
                             </optgroup>
                         </select>
+                        <input type="submit" value="🔍" style="font-size:x-small">
                     </form>
                 </div>
 
                 <hr>
                 <%
 
-                // 쿼리
-                PreparedStatement stmtres = conn.prepareStatement("select date,Company_name,seven_days_ago_middle_ratio*100 as mid_ratio,seven_days_ago_negative_ratio*100 as nega_ratio,seven_days_ago_positive_ratio*100 as posi_ratio from "+select_stock+" where date=(select max(date) from s033160);");
-                System.out.println(stmtres + "<-- posistmt");
+                    // 쿼리
+                    PreparedStatement stmtres = conn.prepareStatement("select date,Company_name,round(seven_days_ago_middle_ratio,4)*100 as mid_ratio,round(seven_days_ago_negative_ratio,4)*100 as nega_ratio,round(seven_days_ago_positive_ratio,4)*100 as posi_ratio from "+select_stock+" where date=(select max(date) from "+select_stock+");");
+                    System.out.println(stmtres + "<-- posistmt");
 
-                // 쿼리 실행
-                ResultSet rsres = stmtres.executeQuery();
+                    // 쿼리 실행
+                    ResultSet rsres = stmtres.executeQuery();
 
-                while (rsres.next()) {
+                    //chart js
 
-            %>
+
+                    while (rsres.next()) {
+
+                        String js_posi = rsres.getString("posi_ratio");
+                        String js_midd = rsres.getString("nega_ratio");
+                        String js_nega = rsres.getString("mid_ratio");
+
+                        request.setAttribute("js_posi", js_posi);
+                        request.setAttribute("js_nega", js_nega);
+                        request.setAttribute("js_midd", js_midd);
+
+
+                %>
+
+                <script>
+                    var js_posi = "${js_posi}";
+                    var js_nega = "${js_nega}";
+                    var js_midd = "${js_midd}";
+
+                </script>
+
+
                 <div style="padding: 10px; text-align: center" class="result center">
                     <div style="text-align:center" ;>
                         <img src="/images/graph.png" class="graph" alt="" width="480px" height="480px">
                     </div>
 
                     <div style="text-align: center;" class="preBox-top">
-                        <div class="title" style="font-size:x-large;">
+                        <div style="font-size:x-large;">
 
-                            <span><%=Nextday%>
+                            <span style="color: #0b0b0b"><%=Nextday%>
                            <em class="up"> <%=rsres.getString("Company_name")%></em>
                            예측 결과
                             </span>
                         </div>
 
-                        <div class="date"><em> <%=(Today)%> 장마감 기준 </em></div>
+                        <div class="date"><em><%=(Today)%> 장마감 기준 </em>
+                            <hr>
+                        </div>
 
 
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+                        <div style="display: flex;justify-content: center">
 
+                            <canvas id="doughnut-chart" width="380px" height="380px"
+                                    style="text-align: center"></canvas>
+
+                        </div>
 
 
                         <div class="mainitem">
@@ -278,11 +306,18 @@
                                     <span class="down"> 부정 <%=rsres.getString("nega_ratio")%> % </span>
                                     <span class="middle"> 중립 <%=rsres.getString("mid_ratio")%> % </span>
                                 </h3>
-                                <h6 class="middle">기준일로부터 7일간 수집된 기사를 반영한 결과입니다.</h6>
+                                <!--h6 class="middle">기준일로부터 7일간 수집된 기사를 반영한 결과입니다.</h6-->
                             </div>
                         </div>
 
                         <%}%>
+
+
+                        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+                        <div style="display: flex;justify-content: center">
+                            <canvas id="bar-chart" width="380px" height="380px" style="text-align: center"></canvas>
+                        </div>
 
                         <div class="preresult">
                             <div style="margin-top:10px" class="">
@@ -306,8 +341,10 @@
 
                                     <%
 
+                                        String news=select_stock+"crawling";
+
                                         // 쿼리
-                                        PreparedStatement stmtposi = conn.prepareStatement("select Date,title,Lable from s02_c33160 where Lable='2' order by Date desc ");
+                                        PreparedStatement stmtposi = conn.prepareStatement("select date,title,label from "+news+" where label='2' order by date desc");
                                         System.out.println(stmtposi + "<-- posistmt");
 
                                         // 쿼리 실행
@@ -342,7 +379,7 @@
 
                                 </table>
                                 <% // 쿼리
-                                    PreparedStatement stmtnega = conn.prepareStatement("select Date,title,Lable from s02_c33160 where Lable='1' order by Date desc ");
+                                    PreparedStatement stmtnega = conn.prepareStatement("select date,title,label from "+news+" where label='1' order by date desc");
                                     System.out.println(stmtnega + "<-- negastmt");
 
                                     // 쿼리 실행
@@ -373,10 +410,12 @@
                                         </td>
                                     </tr>
 
-                                    </tbody>
                                     <%
                                         }
                                     %>
+
+
+                                    </tbody>
 
 
                                 </table>
@@ -394,349 +433,12 @@
     </section><!-- End off Business section -->
 
 
-    <!--product section-->
-    <!--section-- id="product" class="product">
-        <div class="container">
-            <div class="main_product roomy-80">
-                <div class="head_title text-center fix">
-                    <h2 class="text-uppercase">What Client Say</h2>
-                    <h5>Clean and Modern design is our best specialist</h5>
-                </div>
-
-                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                    <!-- Indicators -->
-
-    <!-- Wrapper for slides -->
-    <!--div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-3">
-                        <div class="port_item xs-m-top-30">
-                            <div class="port_img">
-                                <img src="/images/work-img1.jpg" alt="" />
-                                <div class="port_overlay text-center">
-                                    <a href="/images/work-img1.jpg" class="popup-img">+</a>
-                                </div>
-                            </div>
-                            <div class="port_caption m-top-20">
-                                <h5>Your Work Title</h5>
-                                <h6>- Graphic Design</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="port_item xs-m-top-30">
-                            <div class="port_img">
-                                <img src="/images/work-img2.jpg" alt="" />
-                                <div class="port_overlay text-center">
-                                    <a href="/images/work-img2.jpg" class="popup-img">+</a>
-                                </div>
-                            </div>
-                            <div class="port_caption m-top-20">
-                                <h5>Your Work Title</h5>
-                                <h6>- Graphic Design</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="port_item xs-m-top-30">
-                            <div class="port_img">
-                                <img src="/images/work-img3.jpg" alt="" />
-                                <div class="port_overlay text-center">
-                                    <a href="/images/work-img3.jpg" class="popup-img">+</a>
-                                </div>
-                            </div>
-                            <div class="port_caption m-top-20">
-                                <h5>Your Work Title</h5>
-                                <h6>- Graphic Design</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="port_item xs-m-top-30">
-                            <div class="port_img">
-                                <img src="/images/work-img4.jpg" alt="" />
-                                <div class="port_overlay text-center">
-                                    <a href="/images/work-img4.jpg" class="popup-img">+</a>
-                                </div>
-                            </div>
-                            <div class="port_caption m-top-20">
-                                <h5>Your Work Title</h5>
-                                <h6>- Graphic Design</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <footer>
+        <div class="main_footer fix bg-mega text-center p-top-40 p-bottom-30 m-top-50">
+            <p>KSS가 제공하는 정보는투자 참고 사항이며, 불가피한 오류 또는 누락이 발생하거나 지연 제공될 수 있습니다. </p>
+            <img src="/images/logo.png" class="logo" alt="">
         </div>
-
-        <div class="item">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-3">
-                        <div class="port_item xs-m-top-30">
-                            <div class="port_img">
-                                <img src="/images/work-img1.jpg" alt="" />
-                                <div class="port_overlay text-center">
-                                    <a href="/images/work-img1.jpg" class="popup-img">+</a>
-                                </div>
-                            </div>
-                            <div class="port_caption m-top-20">
-                                <h5>Your Work Title</h5>
-                                <h6>- Graphic Design</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="port_item xs-m-top-30">
-                            <div class="port_img">
-                                <img src="/images/work-img2.jpg" alt="" />
-                                <div class="port_overlay text-center">
-                                    <a href="/images/work-img2.jpg" class="popup-img">+</a>
-                                </div>
-                            </div>
-                            <div class="port_caption m-top-20">
-                                <h5>Your Work Title</h5>
-                                <h6>- Graphic Design</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="port_item xs-m-top-30">
-                            <div class="port_img">
-                                <img src="/images/work-img3.jpg" alt="" />
-                                <div class="port_overlay text-center">
-                                    <a href="/images/work-img3.jpg" class="popup-img">+</a>
-                                </div>
-                            </div>
-                            <div class="port_caption m-top-20">
-                                <h5>Your Work Title</h5>
-                                <h6>- Graphic Design</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="port_item xs-m-top-30">
-                            <div class="port_img">
-                                <img src="/images/work-img4.jpg" alt="" />
-                                <div class="port_overlay text-center">
-                                    <a href="/images/work-img4.jpg" class="popup-img">+</a>
-                                </div>
-                            </div>
-                            <div class="port_caption m-top-20">
-                                <h5>Your Work Title</h5>
-                                <h6>- Graphic Design</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="item">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-3">
-                        <div class="port_item xs-m-top-30">
-                            <div class="port_img">
-                                <img src="/images/work-img1.jpg" alt="" />
-                                <div class="port_overlay text-center">
-                                    <a href="/images/work-img1.jpg" class="popup-img">+</a>
-                                </div>
-                            </div>
-                            <div class="port_caption m-top-20">
-                                <h5>Your Work Title</h5>
-                                <h6>- Graphic Design</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="port_item xs-m-top-30">
-                            <div class="port_img">
-                                <img src="/images/work-img2.jpg" alt="" />
-                                <div class="port_overlay text-center">
-                                    <a href="/images/work-img2.jpg" class="popup-img">+</a>
-                                </div>
-                            </div>
-                            <div class="port_caption m-top-20">
-                                <h5>Your Work Title</h5>
-                                <h6>- Graphic Design</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="port_item xs-m-top-30">
-                            <div class="port_img">
-                                <img src="/images/work-img3.jpg" alt="" />
-                                <div class="port_overlay text-center">
-                                    <a href="/images/work-img3.jpg" class="popup-img">+</a>
-                                </div>
-                            </div>
-                            <div class="port_caption m-top-20">
-                                <h5>Your Work Title</h5>
-                                <h6>- Graphic Design</h6>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="port_item xs-m-top-30">
-                            <div class="port_img">
-                                <img src="/images/work-img4.jpg" alt="" />
-                                <div class="port_overlay text-center">
-                                    <a href="/images/work-img4.jpg" class="popup-img">+</a>
-                                </div>
-                            </div>
-                            <div class="port_caption m-top-20">
-                                <h5>Your Work Title</h5>
-                                <h6>- Graphic Design</h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div-->
-
-    <!-- Controls -->
-    <!--a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-        <i class="fa fa-angle-left" aria-hidden="true"></i>
-        <span class="sr-only">Previous</span>
-    </a>
-
-    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-        <i class="fa fa-angle-right" aria-hidden="true"></i>
-        <span class="sr-only">Next</span>
-    </a>
-    </div>
-    </div><!-- End off row -->
-</div><!-- End off container -->
-</section--><!-- End off Product section -->
-
-
-<!--Test section-->
-<!--section id="test" class="test bg-grey roomy-60 fix">
-    <div class="container">
-        <div class="row">
-            <div class="main_test fix">
-
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                    <div class="head_title text-center fix">
-                        <h2 class="text-uppercase">What Client Say</h2>
-                        <h5>Clean and Modern design is our best specialist</h5>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="test_item fix">
-                        <div class="item_img">
-                            <img class="img-circle" src="/images/test-img1.jpg" alt="" />
-                            <i class="fa fa-quote-left"></i>
-                        </div>
-
-                        <div class="item_text">
-                            <h5>Sarah Smith</h5>
-                            <h6>envato.com</h6>
-
-                            <p>Natus voluptatum enim quod necessitatibus quis
-                                expedita harum provident eos obcaecati id culpa
-                                corporis molestias.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="test_item fix sm-m-top-30">
-                        <div class="item_img">
-                            <img class="img-circle" src="/images/test-img2.jpg" alt="" />
-                            <i class="fa fa-quote-left"></i>
-                        </div>
-
-                        <div class="item_text">
-                            <h5>Sarah Smith</h5>
-                            <h6>envato.com</h6>
-
-                            <p>Natus voluptatum enim quod necessitatibus quis
-                                expedita harum provident eos obcaecati id culpa
-                                corporis molestias.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section--><!-- End off test section -->
-
-
-<!--Brand Section-->
-<!--section id="brand" class="brand fix roomy-80">
-    <div class="container">
-        <div class="row">
-            <div class="main_brand text-center">
-                <div class="col-md-2 col-sm-4 col-xs-6">
-                    <div class="brand_item sm-m-top-20">
-                        <img src="/images/cbrand-img1.png" alt="" />
-                    </div>
-                </div>
-                <div class="col-md-2 col-sm-4 col-xs-6">
-                    <div class="brand_item sm-m-top-20">
-                        <img src="/images/cbrand-img2.png" alt="" />
-                    </div>
-                </div>
-                <div class="col-md-2 col-sm-4 col-xs-6">
-                    <div class="brand_item sm-m-top-20">
-                        <img src="/images/cbrand-img3.png" alt="" />
-                    </div>
-                </div>
-                <div class="col-md-2 col-sm-4 col-xs-6">
-                    <div class="brand_item sm-m-top-20">
-                        <img src="/images/cbrand-img4.png" alt="" />
-                    </div>
-                </div>
-                <div class="col-md-2 col-sm-4 col-xs-6">
-                    <div class="brand_item sm-m-top-20">
-                        <img src="/images/cbrand-img5.png" alt="" />
-                    </div>
-                </div>
-                <div class="col-md-2 col-sm-4 col-xs-6">
-                    <div class="brand_item sm-m-top-20">
-                        <img src="/images/cbrand-img6.png" alt="" />
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section--><!-- End off Brand section -->
-
-
-<!--Call to  action section-->
-<!--section id="action" class="action bg-primary roomy-40">
-    <div class="container">
-        <div class="row">
-            <div class="maine_action">
-                <div class="col-md-8">
-                    <div class="action_item text-center">
-                        <h2 class="text-white text-uppercase">Your Promotion Text Will Be Here</h2>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="action_btn text-left sm-text-center">
-                        <a href="" class="btn btn-default">Purchase Now</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section-->
-
-
-<footer>
-    <div class="main_footer fix bg-mega text-center p-top-40 p-bottom-30 m-top-50">
-        <p>KSS가 제공하는 정보는투자 참고 사항이며, 불가피한 오류 또는 누락이 발생하거나 지연 제공될 수 있습니다. </p>
-        <img src="/images/logo.png" class="logo" alt="">
-    </div>
-</footer>
+    </footer>
 
 
 </div>
@@ -758,6 +460,7 @@
 <script src="/js/plugins.js"></script>
 <script src="/js/main.js"></script>
 <script src="/js/prediction.js"></script>
+<script src="/js/chart.js"></script>
 
 </body>
 </html>

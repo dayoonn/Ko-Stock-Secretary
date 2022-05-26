@@ -200,6 +200,9 @@
                     <div class="setcenter">
                         <div class="top5box" style="margin-top:10px; ">
 
+                            <h3 class="text-center" >금융</h3>
+
+
                             <table class="type09">
 
                                 <%
@@ -253,58 +256,77 @@
             </div>
 
             <div class="sub-content bg-white">
+                <%
+
+                    // 쿼리
+
+                    //db변경
+                    PreparedStatement stmtcost = conn.prepareStatement("select Company_name ,min(Company_code) from top5 where Sectors_code="+select_sector+"");
+                    System.out.println(stmtcost + "<-- coststmt");
+
+                    // 쿼리 실행
+                    ResultSet rscost = stmtcost.executeQuery();
+
+
+                %>
                 <h3>금액별 주식 추천</h3>
                 <hr>
                 <div class="sub-section">
                     <div class="setcost">
-                        1주당 희망 금액(₩) :
-                        <input type="text">
-                        ~
-                        <input type="text">
+                        <form method="post" action="recommend_searchcost">
+                            1주당 희망 금액(₩) :
+                            <input type="text" name="min">
+                            ~
+                            <input type="text" name="max">
+                            <input type="submit" value="🔍">
+                        </form>
 
                     </div>
 
 
                     <div class="setcenter">
+                        <% while (rscost.next()) { %>
 
-                        <table class="type09">
-                            <thead>
-                            <tr>
-                                <th scope="cols">추천 종목</th>
-                                <th scope="cols"></th>
+                        <table class="type09" >
+                            <thead >
+                            <tr >
+                                <th scope = "cols" > 추천 종목</th >
+                                <th scope = "cols" ></th >
 
-                            </tr>
-                            </thead>
+                            </tr >
+                            </thead >
 
-                            <tbody>
-                            <tr>
-                                <th scope="row">종목명</th>
-                                <td>주식명</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">종목코드</th>
-                                <td>코드</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">업종</th>
-                                <td>업종</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">등락률</th>
-                                <td>등락률</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">현재가</th>
-                                <td>1주 가격</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                            <tbody >
+                            <tr >
+                                <th scope = "row" > 종목명 </th >
+                                <td > <%= rscost.getString("Company_name") %> </td >
+                            </tr >
+                            <tr >
+                                <th scope = "row" > 종목코드 </th >
+                                <td > 코드 </td >
+                            </tr >
+                            <tr >
+                                <th scope = "row" > 업종 </th >
+                                <td > 업종 </td >
+                            </tr >
+                            <tr >
+                                <th scope = "row" > 등락률 </th >
+                                <td > 등락률 </td >
+                            </tr >
+                            <tr >
+                                <th scope = "row" > 현재가 </th >
+                                <td > 1 주 가격</td >
+                            </tr >
+                            </tbody >
+                        </table >
+                    </div >
 
-                    <div class="setcenter" style="margin-top: 20px">
-                        <h3 class="txtcenter">주가 변화 양상</h3>
-                        <img src="/images/graph.png" class="graph" alt="" width="480px" height="480px">
-                    </div>
+                    <div class="setcenter" style = "margin-top: 20px" >
+                        <h3 class="txtcenter" > 주가 변화 양상</h3 >
+                        <img src = "/images/graph.png" class="graph" alt = "" width = "480px" height = "480px" >
+                    </div >
+
+                    <% } %>
 
                     <div style="text-align: center; margin-top: 20px">
                         <a onclick="location='prediction'" class="btn btn-primary m-top-20">➔ 주가 예측 서비스 바로가기</a>
@@ -316,7 +338,6 @@
 
             </div>
         </div>
-
 
     </section>
     <!-- End off Business section -->
