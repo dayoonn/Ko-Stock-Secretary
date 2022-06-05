@@ -17,6 +17,7 @@
 
 <%
     String select_stock = request.getParameter("searchstock");
+    String graph="/images/"+select_stock+".png";
 
 %>
 
@@ -197,39 +198,39 @@
                             <optgroup label="반도체">
                                 <option value="s033160">엠케이전자</option>
                                 <option value="s046890">서울반도체</option>
-                                <option value="108320">LX세미콘</option>
-                                <option value="240810">원익IPS</option>
-                                <option value="5290">동진세미켐</option>
-                                <option value="33640">네패스</option>
-                                <option value="222800">심텍</option>
-                                <option value="67310">하나마이크론</option>
-                                <option value="36540">SFA반도체</option>
-                                <option value="84850">아이티엠반도체</option>
+                                <option value="s108320">LX세미콘</option>
+                                <option value="s240810">원익IPS</option>
+                                <option value="s005290">동진세미켐</option>
+                                <option value="s033640">네패스</option>
+                                <option value="s222800">심텍</option>
+                                <option value="s067310">하나마이크론</option>
+                                <option value="s036540">SFA반도체</option>
+                                <option value="s084850">아이티엠반도체</option>
                             </optgroup>
                             <optgroup label="금융">
-                                <option value="105560">KB금융</option>
-                                <option value="055550">시난지주</option>
-                                <option value="086790">하나금융지주</option>
-                                <option value="316140">우리금융지주</option>
-                                <option value="024110">기업은행</option>
-                                <option value="032830">삼성생명</option>
-                                <option value="001510">SK</option>
-                                <option value="088350">한화생명</option>
-                                <option value="006800">미래에셋증권</option>
-                                <option value="138930">BNK금융지주</option>
+                                <option value="s105560">KB금융</option>
+                                <option value="s055550">시난지주</option>
+                                <option value="s086790">하나금융지주</option>
+                                <option value="s316140">우리금융지주</option>
+                                <option value="s024110">기업은행</option>
+                                <option value="s032830">삼성생명</option>
+                                <option value="s001510">SK</option>
+                                <option value="s088350">한화생명</option>
+                                <option value="s006800">미래에셋증권</option>
+                                <option value="s138930">BNK금융지주</option>
                             </optgroup>
                             <optgroup label="의약품">
 
-                                <option value="207940">삼성바이오로직스</option>
-                                <option value="068270">셀트리온</option>
-                                <option value="000100">유한양행</option>
-                                <option value="006280">녹십자</option>
-                                <option value="128940">한미약품</option>
-                                <option value="069620">대웅제약</option>
-                                <option value="001630">종근당홀딩스</option>
-                                <option value="170900">동아에스티</option>
-                                <option value="185750">종근당</option>
-                                <option value="009290">광동제약</option>
+                                <option value="s207940">삼성바이오로직스</option>
+                                <option value="s068270">셀트리온</option>
+                                <option value="s000100">유한양행</option>
+                                <option value="s006280">녹십자</option>
+                                <option value="s128940">한미약품</option>
+                                <option value="s069620">대웅제약</option>
+                                <option value="s001630">종근당홀딩스</option>
+                                <option value="s170900">동아에스티</option>
+                                <option value="s185750">종근당</option>
+                                <option value="s009290">광동제약</option>
                             </optgroup>
                         </select>
                         <input type="submit" value="🔍" style="font-size:x-small">
@@ -272,7 +273,7 @@
 
                 <div style="padding: 10px; text-align: center" class="result center">
                     <div style="text-align:center" ;>
-                        <img src="/images/graph.png" class="graph" alt="" width="480px" height="480px">
+                        <img src=<%=graph%> class="graph" alt="" width="480px" height="480px">
                     </div>
 
                     <div style="text-align: center;" class="preBox-top">

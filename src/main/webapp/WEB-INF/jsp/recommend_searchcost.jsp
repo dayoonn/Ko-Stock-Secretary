@@ -262,7 +262,7 @@
                     // 쿼리
 
                     //db변경
-                    PreparedStatement stmtcost = conn.prepareStatement("select Company_Name,min(Company_code) from top5 where Sectors_code="+mincost+"");
+                    PreparedStatement stmtcost = conn.prepareStatement("select ifnull(stock_name,'해당 조건에 맞는 종목이 없습니다') as stock_name ,ifnull(sector_name,'--')as sector_name,ifnull(max(round(ratio,3)*100),'--')as cost_ratio,ifnull(cost,'--')as cost from cost where cost>="+mincost+" and cost<="+maxcost+"");
                     System.out.println(stmtcost + "<-- coststmt");
 
                     // 쿼리 실행
@@ -300,7 +300,7 @@
                             <tbody >
                             <tr >
                                 <th scope = "row" > 종목명 </th >
-                                <td > <%= rscost.getString("Company_name") %> </td >
+                                <td > <%= rscost.getString("stock_name") %> </td >
                             </tr >
                             <tr >
                                 <th scope = "row" > 종목코드 </th >
@@ -308,15 +308,15 @@
                             </tr >
                             <tr >
                                 <th scope = "row" > 업종 </th >
-                                <td > 업종 </td >
+                                <td ><%= rscost.getString("sector_name") %>  </td >
                             </tr >
                             <tr >
                                 <th scope = "row" > 등락률 </th >
-                                <td > 등락률 </td >
+                                <td > <%= rscost.getString("cost_ratio") %> %  </td >
                             </tr >
                             <tr >
                                 <th scope = "row" > 현재가 </th >
-                                <td > 1 주 가격</td >
+                                <td > <%= rscost.getString("cost") %>원 </td >
                             </tr >
                             </tbody >
                         </table >
