@@ -39,9 +39,19 @@ public String index() { return "index";
     @RequestMapping(value = "/recommend_sector2", method = {RequestMethod.GET,RequestMethod.POST})
     public String recommend_sector2() { return "recommend_sector2";
     }
+    @RequestMapping(value = "/recommend_sector3", method = {RequestMethod.GET,RequestMethod.POST})
+    public String recommend_sector3() { return "recommend_sector3";
+    }
+    @RequestMapping(value = "/recommend_sector4", method = {RequestMethod.GET,RequestMethod.POST})
+    public String recommend_sector4() { return "recommend_sector4";
+    }
+    @RequestMapping(value = "/recommend_sector5", method = {RequestMethod.GET,RequestMethod.POST})
+    public String recommend_sector5() { return "recommend_sector5";
+    }
     @RequestMapping(value = "/recommend_searchcost", method = {RequestMethod.GET,RequestMethod.POST})
     public String recommend_searchcost() { return "recommend_searchcost";
     }
+
 
 
 

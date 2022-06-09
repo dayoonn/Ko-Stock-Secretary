@@ -208,7 +208,7 @@
                                 <%
 
                                     // 쿼리
-                                    PreparedStatement stmttop = conn.prepareStatement("select Company_name from top5 where Sectors_code=1");
+                                    PreparedStatement stmttop = conn.prepareStatement("select stock_name from top5 where Sectors_code=1 order by ratio desc");
                                     System.out.println(stmttop + "<-- topstmt");
 
                                     // 쿼리 실행
@@ -235,7 +235,7 @@
                                 <tr>
                                     <th scope="row">Top <%=rank%>
                                     </th>
-                                    <td><%=rstop.getString("company_name") %>
+                                    <td><%=rstop.getString("stock_name") %>
                                     </td>
                                 </tr>
 
@@ -262,7 +262,7 @@
                     // 쿼리
 
                     //db변경
-                    PreparedStatement stmtcost = conn.prepareStatement("select ifnull(stock_name,'해당 조건에 맞는 종목이 없습니다') as stock_name ,ifnull(sector_name,'--')as sector_name,ifnull(max(round(ratio,3)*100),'--')as cost_ratio,ifnull(cost,'--')as cost from cost where cost>="+mincost+" and cost<="+maxcost+"");
+                    PreparedStatement stmtcost = conn.prepareStatement("select ifnull(stock_name,'해당 조건에 맞는 종목이 없습니다') as stock_name ,ifnull(sector_name,'--')as sector_name,ifnull(max(round(ratio,3)*100),'--')as cost_ratio,ifnull(cost,'--')as cost ,stock_code from cost where cost>="+mincost+" and cost<="+maxcost+"");
                     System.out.println(stmtcost + "<-- coststmt");
 
                     // 쿼리 실행
@@ -304,7 +304,7 @@
                             </tr >
                             <tr >
                                 <th scope = "row" > 종목코드 </th >
-                                <td > 코드 </td >
+                                <td > <%= rscost.getString("stock_code") %></td >
                             </tr >
                             <tr >
                                 <th scope = "row" > 업종 </th >

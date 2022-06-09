@@ -232,6 +232,33 @@
                                 <option value="s185750">종근당</option>
                                 <option value="s009290">광동제약</option>
                             </optgroup>
+
+                            <optgroup label="오락/문화">
+
+                                <option value="s034230">파라다이스</option>
+                                <option value="s041510">에스엠</option>
+                                <option value="s253450">스튜디오드래곤</option>
+                                <option value="s122870">와이지엔터테인먼트</option>
+                                <option value="s047820">초록뱀미디어</option>
+                                <option value="s160550">NEW</option>
+                                <option value="s035900">JYP Ent.</option>
+                                <option value="s046140">SBS콘텐츠허브</option>
+                                <option value="s299900">위지윅스튜디오</option>
+                                <option value="s111710">남화산업</option>
+                            </optgroup>
+                            <optgroup label="자동차">
+
+                                <option value="s000270">기아</option>
+                                <option value="s012330">현대모비스</option>
+                                <option value="s005380">현대차</option>
+                                <option value="s005850">에스엘</option>
+                                <option value="s161390">한국타이어엔테크놀로지</option>
+                                <option value="s060980">한라홀딩스</option>
+                                <option value="s002350">넥센타이어</option>
+                                <option value="s011210">현대위아</option>
+                                <option value="s043370">피에이치에이</option>
+                                <option value="s015750">성우하이텍</option>
+                            </optgroup>
                         </select>
                         <input type="submit" value="🔍" style="font-size:x-small">
                     </form>
@@ -253,8 +280,8 @@
                     while (rsres.next()) {
 
                         String js_posi = rsres.getString("posi_ratio");
-                        String js_midd = rsres.getString("nega_ratio");
-                        String js_nega = rsres.getString("mid_ratio");
+                        String js_midd = rsres.getString("mid_ratio");
+                        String js_nega = rsres.getString("nega_ratio");
 
                         request.setAttribute("js_posi", js_posi);
                         request.setAttribute("js_nega", js_nega);

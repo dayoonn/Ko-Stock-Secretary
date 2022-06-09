@@ -197,39 +197,66 @@
                             <optgroup label="반도체">
                                 <option value="s033160">엠케이전자</option>
                                 <option value="s046890">서울반도체</option>
-                                <option value="108320">LX세미콘</option>
-                                <option value="240810">원익IPS</option>
-                                <option value="5290">동진세미켐</option>
-                                <option value="33640">네패스</option>
-                                <option value="222800">심텍</option>
-                                <option value="67310">하나마이크론</option>
-                                <option value="36540">SFA반도체</option>
-                                <option value="84850">아이티엠반도체</option>
+                                <option value="s108320">LX세미콘</option>
+                                <option value="s240810">원익IPS</option>
+                                <option value="s005290">동진세미켐</option>
+                                <option value="s033640">네패스</option>
+                                <option value="s222800">심텍</option>
+                                <option value="s067310">하나마이크론</option>
+                                <option value="s036540">SFA반도체</option>
+                                <option value="s084850">아이티엠반도체</option>
                             </optgroup>
                             <optgroup label="금융">
-                                <option value="105560">KB금융</option>
-                                <option value="055550">시난지주</option>
-                                <option value="086790">하나금융지주</option>
-                                <option value="316140">우리금융지주</option>
-                                <option value="024110">기업은행</option>
-                                <option value="032830">삼성생명</option>
-                                <option value="001510">SK</option>
-                                <option value="088350">한화생명</option>
-                                <option value="006800">미래에셋증권</option>
-                                <option value="138930">BNK금융지주</option>
+                                <option value="s105560">KB금융</option>
+                                <option value="s055550">시난지주</option>
+                                <option value="s086790">하나금융지주</option>
+                                <option value="s316140">우리금융지주</option>
+                                <option value="s024110">기업은행</option>
+                                <option value="s032830">삼성생명</option>
+                                <option value="s001510">SK</option>
+                                <option value="s088350">한화생명</option>
+                                <option value="s006800">미래에셋증권</option>
+                                <option value="s138930">BNK금융지주</option>
                             </optgroup>
                             <optgroup label="의약품">
 
-                                <option value="207940">삼성바이오로직스</option>
-                                <option value="068270">셀트리온</option>
-                                <option value="000100">유한양행</option>
-                                <option value="006280">녹십자</option>
-                                <option value="128940">한미약품</option>
-                                <option value="069620">대웅제약</option>
-                                <option value="001630">종근당홀딩스</option>
-                                <option value="170900">동아에스티</option>
-                                <option value="185750">종근당</option>
-                                <option value="009290">광동제약</option>
+                                <option value="s207940">삼성바이오로직스</option>
+                                <option value="s068270">셀트리온</option>
+                                <option value="s000100">유한양행</option>
+                                <option value="s006280">녹십자</option>
+                                <option value="s128940">한미약품</option>
+                                <option value="s069620">대웅제약</option>
+                                <option value="s001630">종근당홀딩스</option>
+                                <option value="s170900">동아에스티</option>
+                                <option value="s185750">종근당</option>
+                                <option value="s009290">광동제약</option>
+                            </optgroup>
+
+                            <optgroup label="오락/문화">
+
+                                <option value="s034230">파라다이스</option>
+                                <option value="s041510">에스엠</option>
+                                <option value="s253450">스튜디오드래곤</option>
+                                <option value="s122870">와이지엔터테인먼트</option>
+                                <option value="s047820">초록뱀미디어</option>
+                                <option value="s160550">NEW</option>
+                                <option value="s035900">JYP Ent.</option>
+                                <option value="s046140">SBS콘텐츠허브</option>
+                                <option value="s299900">위지윅스튜디오</option>
+                                <option value="s111710">남화산업</option>
+                            </optgroup>
+                            <optgroup label="자동차">
+
+                                <option value="s000270">기아</option>
+                                <option value="s012330">현대모비스</option>
+                                <option value="s005380">현대차</option>
+                                <option value="s005850">에스엘</option>
+                                <option value="s161390">한국타이어엔테크놀로지</option>
+                                <option value="s060980">한라홀딩스</option>
+                                <option value="s002350">넥센타이어</option>
+                                <option value="s011210">현대위아</option>
+                                <option value="s043370">피에이치에이</option>
+                                <option value="s015750">성우하이텍</option>
                             </optgroup>
                         </select>
                         <input type="submit" value="🔍" style="font-size:x-small">
@@ -252,8 +279,8 @@
                     while (rsres.next()) {
 
                         String js_posi = rsres.getString("posi_ratio");
-                        String js_midd = rsres.getString("nega_ratio");
-                        String js_nega = rsres.getString("mid_ratio");
+                        String js_midd = rsres.getString("mid_ratio");
+                        String js_nega = rsres.getString("nega_ratio");
 
                         request.setAttribute("js_posi", js_posi);
                         request.setAttribute("js_nega", js_nega);

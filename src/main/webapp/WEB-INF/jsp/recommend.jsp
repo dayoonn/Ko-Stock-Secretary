@@ -174,7 +174,7 @@
             <h3 class="sub-title text-center">
                 <strong>주식 추천 서비스</strong>
             </h3>
-            <h6 class=text-center> 업종별 등락률 기준 Top5와 자신이 원하는 1주당 금액을 가진 주식을 추천해 주는 서비스입니다.</h6>
+            <h6 class=text-center> 업종별 예측 등락률 기준 Top5와 자신이 원하는 1주당 금액을 가진 주식을 추천해 주는 서비스입니다.</h6>
 
 
             <div class="sub-content bg-white">
@@ -207,7 +207,7 @@
                                 <%
 
                                     // 쿼리
-                                    PreparedStatement stmttop = conn.prepareStatement("select Company_name from top5 where Sectors_code=1");
+                                    PreparedStatement stmttop = conn.prepareStatement("select stock_name from top5 where Sectors_code=1 order by ratio desc");
                                     System.out.println(stmttop + "<-- topstmt");
 
                                     // 쿼리 실행
@@ -234,7 +234,7 @@
                                 <tr>
                                     <th scope="row">Top <%=rank%>
                                     </th>
-                                    <td><%=rstop.getString("company_name") %>
+                                    <td><%=rstop.getString("stock_name") %>
                                     </td>
                                 </tr>
 
