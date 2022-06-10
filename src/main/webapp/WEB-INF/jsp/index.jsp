@@ -248,13 +248,13 @@
                             <div class="business_items text-center">
                                 <div class="business_item">
                                     <div class="business_img">
-                                        <img src="/images/about-img1.jpg" alt="" />
+                                        <img src="/images/preview1.png" alt="" />
                                     </div>
                                 </div>
 
                                 <div class="business_item">
                                     <div class="business_img">
-                                        <img src="/images/about-img1.jpg" alt="" />
+                                        <img src="/images/preview2.png" alt="" />
                                     </div>
                                 </div>
 
