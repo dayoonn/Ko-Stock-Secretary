@@ -14,6 +14,7 @@
     String select_sector = request.getParameter("searchsector");
     String mincost=request.getParameter("min");
     String maxcost=request.getParameter("max");
+    String company_code;
 
 %>
 
@@ -322,12 +323,19 @@
                         </table >
                     </div >
 
+                    <%
+                        company_code=rscost.getString("stock_code");
+                        String graph="/images/"+company_code+".png";
+                    %>
                     <div class="setcenter" style = "margin-top: 20px" >
                         <h3 class="txtcenter" > 주가 변화 양상</h3 >
-                        <img src = "/images/graph.png" class="graph" alt = "" width = "480px" height = "480px" >
+                        <img src = <%=graph%> class="graph" alt = "" width = "480px" height = "480px" >
                     </div >
 
-                    <% } %>
+                    <%
+
+                        } %>
+
 
                     <div style="text-align: center; margin-top: 20px">
                         <a onclick="location='prediction'" class="btn btn-primary m-top-20">➔ 주가 예측 서비스 바로가기</a>

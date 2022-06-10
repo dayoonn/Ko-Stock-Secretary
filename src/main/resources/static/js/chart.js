@@ -31,7 +31,7 @@ new Chart(document.getElementById("bar-chart"), {
             {
                 label: "Percentage(%)",
                 backgroundColor: ["#FF4500", "#4169E1","#3cba9f"],
-                data: [20,80,90]
+                data: [js_rise,js_decline,js_acc]
             }
         ]
     },

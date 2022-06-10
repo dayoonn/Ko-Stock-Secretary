@@ -307,8 +307,8 @@
                     </div>
 
                     <div class="setcenter" style="margin-top: 20px">
-                        <h3 class="txtcenter">주가 변화 양상</h3>
-                        <img src="/images/graph.png" class="graph" alt="" width="480px" height="480px">
+                        <!--h3 class="txtcenter">주가 변화 양상</h3-->
+                        <!--img src="/images/graph.png" class="graph" alt="" width="480px" height="480px"-->
                     </div>
 
                     <div style="text-align: center; margin-top: 20px">

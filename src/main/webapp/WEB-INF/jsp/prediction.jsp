@@ -16,7 +16,7 @@
 %>
 
 <%
-    String select_stock = request.getParameter("searchstock");
+    String select_stock ='s'+request.getParameter("searchstock");
     String crawlingtable = select_stock + "crawling";
 %>
 
@@ -195,68 +195,68 @@
                         <select name="searchstock" id="searchstock" class="selectpicker" >
                             <option value="">선택</option>
                             <optgroup label="반도체">
-                                <option value="s033160">엠케이전자</option>
-                                <option value="s046890">서울반도체</option>
-                                <option value="s108320">LX세미콘</option>
-                                <option value="s240810">원익IPS</option>
-                                <option value="s005290">동진세미켐</option>
-                                <option value="s033640">네패스</option>
-                                <option value="s222800">심텍</option>
-                                <option value="s067310">하나마이크론</option>
-                                <option value="s036540">SFA반도체</option>
-                                <option value="s084850">아이티엠반도체</option>
+                                <option value="033160">엠케이전자</option>
+                                <option value="046890">서울반도체</option>
+                                <option value="108320">LX세미콘</option>
+                                <option value="240810">원익IPS</option>
+                                <option value="005290">동진세미켐</option>
+                                <option value="033640">네패스</option>
+                                <option value="222800">심텍</option>
+                                <option value="067310">하나마이크론</option>
+                                <option value="036540">SFA반도체</option>
+                                <option value="084850">아이티엠반도체</option>
                             </optgroup>
                             <optgroup label="금융">
-                                <option value="s105560">KB금융</option>
-                                <option value="s055550">시난지주</option>
-                                <option value="s086790">하나금융지주</option>
-                                <option value="s316140">우리금융지주</option>
-                                <option value="s024110">기업은행</option>
-                                <option value="s032830">삼성생명</option>
-                                <option value="s001510">SK</option>
-                                <option value="s088350">한화생명</option>
-                                <option value="s006800">미래에셋증권</option>
-                                <option value="s138930">BNK금융지주</option>
+                                <option value="105560">KB금융</option>
+                                <option value="055550">시난지주</option>
+                                <option value="086790">하나금융지주</option>
+                                <option value="316140">우리금융지주</option>
+                                <option value="024110">기업은행</option>
+                                <option value="032830">삼성생명</option>
+                                <option value="001510">SK</option>
+                                <option value="088350">한화생명</option>
+                                <option value="006800">미래에셋증권</option>
+                                <option value="138930">BNK금융지주</option>
                             </optgroup>
                             <optgroup label="의약품">
 
-                                <option value="s207940">삼성바이오로직스</option>
-                                <option value="s068270">셀트리온</option>
-                                <option value="s000100">유한양행</option>
-                                <option value="s006280">녹십자</option>
-                                <option value="s128940">한미약품</option>
-                                <option value="s069620">대웅제약</option>
-                                <option value="s001630">종근당홀딩스</option>
-                                <option value="s170900">동아에스티</option>
-                                <option value="s185750">종근당</option>
-                                <option value="s009290">광동제약</option>
+                                <option value="207940">삼성바이오로직스</option>
+                                <option value="068270">셀트리온</option>
+                                <option value="000100">유한양행</option>
+                                <option value="006280">녹십자</option>
+                                <option value="128940">한미약품</option>
+                                <option value="069620">대웅제약</option>
+                                <option value="001630">종근당홀딩스</option>
+                                <option value="170900">동아에스티</option>
+                                <option value="185750">종근당</option>
+                                <option value="009290">광동제약</option>
                             </optgroup>
 
                             <optgroup label="오락/문화">
 
-                                <option value="s034230">파라다이스</option>
-                                <option value="s041510">에스엠</option>
-                                <option value="s253450">스튜디오드래곤</option>
-                                <option value="s122870">와이지엔터테인먼트</option>
-                                <option value="s047820">초록뱀미디어</option>
-                                <option value="s160550">NEW</option>
-                                <option value="s035900">JYP Ent.</option>
-                                <option value="s046140">SBS콘텐츠허브</option>
-                                <option value="s299900">위지윅스튜디오</option>
-                                <option value="s111710">남화산업</option>
+                                <option value="034230">파라다이스</option>
+                                <option value="041510">에스엠</option>
+                                <option value="253450">스튜디오드래곤</option>
+                                <option value="122870">와이지엔터테인먼트</option>
+                                <option value="047820">초록뱀미디어</option>
+                                <option value="160550">NEW</option>
+                                <option value="035900">JYP Ent.</option>
+                                <option value="046140">SBS콘텐츠허브</option>
+                                <option value="299900">위지윅스튜디오</option>
+                                <option value="111710">남화산업</option>
                             </optgroup>
                             <optgroup label="자동차">
 
-                                <option value="s000270">기아</option>
-                                <option value="s012330">현대모비스</option>
-                                <option value="s005380">현대차</option>
-                                <option value="s005850">에스엘</option>
-                                <option value="s161390">한국타이어엔테크놀로지</option>
-                                <option value="s060980">한라홀딩스</option>
-                                <option value="s002350">넥센타이어</option>
-                                <option value="s011210">현대위아</option>
-                                <option value="s043370">피에이치에이</option>
-                                <option value="s015750">성우하이텍</option>
+                                <option value="000270">기아</option>
+                                <option value="012330">현대모비스</option>
+                                <option value="005380">현대차</option>
+                                <option value="005850">에스엘</option>
+                                <option value="161390">한국타이어엔테크놀로지</option>
+                                <option value="060980">한라홀딩스</option>
+                                <option value="002350">넥센타이어</option>
+                                <option value="011210">현대위아</option>
+                                <option value="043370">피에이치에이</option>
+                                <option value="015750">성우하이텍</option>
                             </optgroup>
                         </select>
                         <input type="submit" value="🔍" style="font-size:x-small">
@@ -267,7 +267,7 @@
                 <%
 
                     // 쿼리
-                    PreparedStatement stmtres = conn.prepareStatement("select date,Company_name,round(seven_days_ago_middle_ratio,4)*100 as mid_ratio,round(seven_days_ago_negative_ratio,4)*100 as nega_ratio,round(seven_days_ago_positive_ratio,4)*100 as posi_ratio from s033160 where date=(select max(date) from s033160);");
+                    PreparedStatement stmtres = conn.prepareStatement("select date,Company_name,round(seven_days_ago_middle_ratio,4)*100 as mid_ratio,round(seven_days_ago_negative_ratio,4)*100 as nega_ratio,round(seven_days_ago_positive_ratio,4)*100 as posi_ratio from crawling_ratio where Company_code=033160");
                     System.out.println(stmtres + "<-- posistmt");
 
                     // 쿼리 실행
@@ -299,7 +299,7 @@
 
                 <div style="padding: 10px; text-align: center" class="result center">
                     <div style="text-align:center" ;>
-                        <img src="/images/graph.png" class="graph" alt="" width="480px" height="480px">
+                        <img src="/images/033160.png" class="graph" alt="" width="480px" height="480px">
                     </div>
 
                     <div style="text-align: center;" class="preBox-top">
@@ -340,6 +340,38 @@
                         <%}%>
 
 
+                        <%
+
+                            // 쿼리
+                            PreparedStatement stmtacc = conn.prepareStatement("select Company_name,round(accurary,2) as acc,round(decline,2) as decline,round(rise,2) as rise from accuracy where Company_code=033160");
+                            System.out.println(stmtacc + "<-- accstmt");
+
+                            // 쿼리 실행
+                            ResultSet rsacc = stmtacc.executeQuery();
+
+                            //chart js
+
+
+                            while (rsacc.next()) {
+
+                                String js_acc = rsacc.getString("acc");
+                                String js_decline = rsacc.getString("decline");
+                                String js_rise = rsacc.getString("rise");
+
+                                request.setAttribute("js_acc", js_acc);
+                                request.setAttribute("js_decline", js_decline);
+                                request.setAttribute("js_rise", js_rise);
+
+
+                        %>
+
+                        <script>
+                            var js_acc = "${js_acc}";
+                            var js_decline = "${js_decline}";
+                            var js_rise = "${js_rise}";
+
+                        </script>
+
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
                         <div style="display: flex;justify-content: center">
@@ -350,11 +382,13 @@
                             <div style="margin-top:10px" class="">
                                 <h3>
                                     <span class=""> 수치+NLP 분석 결과 </span>
-                                    <span class="up"> 상승/하락률은 _%로</span>
-                                    <span class=""> 예상됩니다.</span>
+                                    <span class="up"> 상승률 <%=rsacc.getString("rise")%>%, </span>
+                                    <span class="down"> 하락률 <%=rsacc.getString("decline")%>% </span>
+                                    <span class="">로 예상됩니다.</span>
                                 </h3>
                             </div>
                         </div>
+                        <%}%>
                         <hr>
 
 
@@ -369,7 +403,7 @@
                                     <%
 
                                         // 쿼리
-                                        PreparedStatement stmtposi = conn.prepareStatement("select date,title,label from s033160crawling where label='2' order by date desc");
+                                        PreparedStatement stmtposi = conn.prepareStatement("select date,title,label from crawling where label='2' and Company_code='033160' order by date desc");
                                         System.out.println(stmtposi + "<-- posistmt");
 
                                         // 쿼리 실행
@@ -404,7 +438,7 @@
 
                                 </table>
                                 <% // 쿼리
-                                    PreparedStatement stmtnega = conn.prepareStatement("select date,title,label from s033160crawling where label='1' order by date desc");
+                                    PreparedStatement stmtnega = conn.prepareStatement("select date,title,label from s033160crawling where label='1' and Company_code='033160' order by date desc");
                                     System.out.println(stmtnega + "<-- negastmt");
 
                                     // 쿼리 실행
