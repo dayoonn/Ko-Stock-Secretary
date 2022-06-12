@@ -438,7 +438,7 @@
 
                                 </table>
                                 <% // 쿼리
-                                    PreparedStatement stmtnega = conn.prepareStatement("select date,title,label from s033160crawling where label='1' and Company_code='033160' order by date desc");
+                                    PreparedStatement stmtnega = conn.prepareStatement("select date,title,label from crawling where label='1' and Company_code='108320' order by date desc");
                                     System.out.println(stmtnega + "<-- negastmt");
 
                                     // 쿼리 실행
