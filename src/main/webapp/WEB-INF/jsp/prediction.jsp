@@ -267,7 +267,7 @@
                 <%
 
                     // 쿼리
-                    PreparedStatement stmtres = conn.prepareStatement("select date,Company_name,round(seven_days_ago_middle_ratio,4)*100 as mid_ratio,round(seven_days_ago_negative_ratio,4)*100 as nega_ratio,round(seven_days_ago_positive_ratio,4)*100 as posi_ratio from crawling_ratio where Company_code=033160");
+                    PreparedStatement stmtres = conn.prepareStatement("select date,Company_name,round(seven_days_ago_middle_ratio,4)*100 as mid_ratio,round(seven_days_ago_negative_ratio,4)*100 as nega_ratio,round(seven_days_ago_positive_ratio,4)*100 as posi_ratio from crawling_ratio where Company_code=108320");
                     System.out.println(stmtres + "<-- posistmt");
 
                     // 쿼리 실행
@@ -299,19 +299,19 @@
 
                 <div style="padding: 10px; text-align: center" class="result center">
                     <div style="text-align:center" ;>
-                        <img src="/images/033160.png" class="graph" alt="" width="480px" height="480px">
+                        <img src="/images/108320.png" class="graph" alt="" width="480px" height="480px">
                     </div>
 
                     <div style="text-align: center;" class="preBox-top">
                         <div style="font-size:x-large;">
 
-                            <span style="color: #0b0b0b"><%=Nextday%>
+                            <span style="color: #0b0b0b"><!--%=Nextday%-->22/06/13
                            <em class="up"> <%=rsres.getString("Company_name")%></em>
                            예측 결과
                             </span>
                         </div>
 
-                        <div class="date"><em><%=(Today)%> 장마감 기준 </em>
+                        <div class="date"><em><!--%=(Today)%-->22/06/10 장마감 기준 </em>
                             <hr>
                         </div>
 
@@ -343,7 +343,7 @@
                         <%
 
                             // 쿼리
-                            PreparedStatement stmtacc = conn.prepareStatement("select Company_name,round(accurary,2) as acc,round(decline,2) as decline,round(rise,2) as rise from accuracy where Company_code=033160");
+                            PreparedStatement stmtacc = conn.prepareStatement("select Company_name,round(accurary,2) as acc,round(decline,2) as decline,round(rise,2) as rise from accuracy where Company_code=108320");
                             System.out.println(stmtacc + "<-- accstmt");
 
                             // 쿼리 실행
@@ -403,7 +403,7 @@
                                     <%
 
                                         // 쿼리
-                                        PreparedStatement stmtposi = conn.prepareStatement("select date,title,label from crawling where label='2' and Company_code='033160' order by date desc");
+                                        PreparedStatement stmtposi = conn.prepareStatement("select date,title,label from crawling where label='2' and Company_code='108320' order by date desc");
                                         System.out.println(stmtposi + "<-- posistmt");
 
                                         // 쿼리 실행

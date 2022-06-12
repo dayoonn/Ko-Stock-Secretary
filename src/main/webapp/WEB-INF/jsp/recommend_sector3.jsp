@@ -207,7 +207,8 @@
                                 <%
 
                                     // 쿼리
-                                    PreparedStatement stmttop = conn.prepareStatement("select stock_name from top5 where Sectors_code="+select_sector+" order by ratio desc");
+                                    PreparedStatement stmttop =
+                                            conn.prepareStatement("select stock_name from top5 where Sectors_code="+select_sector+" order by ratio desc");
                                     System.out.println(stmttop + "<-- topstmt");
 
                                     // 쿼리 실행

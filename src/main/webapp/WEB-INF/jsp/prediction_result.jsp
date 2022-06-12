@@ -307,13 +307,13 @@
                     <div style="text-align: center;" class="preBox-top">
                         <div style="font-size:x-large;">
 
-                            <span style="color: #0b0b0b"><%=Nextday%>
+                            <span style="color: #0b0b0b"><!--%=Nextday%-->22/06/13
                            <em class="up"> <%=rsres.getString("Company_name")%></em>
                            예측 결과
                             </span>
                         </div>
 
-                        <div class="date"><em><%=(Today)%> 장마감 기준 </em>
+                        <div class="date"><em><!--%=(Today)%-->22/06/10 장마감 기준 </em>
                             <hr>
                         </div>
 

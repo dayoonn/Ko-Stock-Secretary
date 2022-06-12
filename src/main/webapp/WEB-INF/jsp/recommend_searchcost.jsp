@@ -187,7 +187,7 @@
                     <div class="select_st">
                         업종 선택
                         <form method="post" name="frm">
-                            <select class="selectpicker" name="searchsector" id="searchsector" onchange="handleOnChange(this)">
+                            <select class="selectpicker" name="serchsector" id="serchsector" onchange="handleOnChange(this)">
                                 <option value="">선택</option>
                                 <option value="1">금융</option>
                                 <option value="2">반도체</option>
