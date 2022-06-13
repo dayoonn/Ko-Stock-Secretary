@@ -199,7 +199,7 @@
 
                     <div class="setcenter">
                         <div class="top5box" style="margin-top:10px; ">
-                            <h3 class="text-center" >반도체</h3>
+                            <h3 class="text-center" >오락/문화</h3>
 
 
                             <table class="type09">
