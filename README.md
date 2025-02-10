@@ -15,7 +15,7 @@
 ## 기술 스택
 
 **프론트엔드**:
-<p align="center">
+<p>
   <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
   <img src="https://img.shields.io/badge/bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white">
   <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
@@ -23,24 +23,24 @@
 </p>
 
 **백엔드**:
-<p align="center">
+<p>
   <img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
   <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white">
 </p>
 
 **서버 관리**:
-<p align="center">
+<p>
+  <img src="https://img.shields.io/badge/Amazon RDS-FF8000?style=for-the-badge&logo=amarzonrds&logoColor=white">
   <img src="https://img.shields.io/badge/Amazon AWS-232F3E?style=flat-square&logo=amazonaws&logoColor=white"/>
 </p>
 
 **데이터베이스**:
-<p align="center">
-  <img src="https://img.shields.io/badge/Amazon RDS-FF8000?style=for-the-badge&logo=amarzonrds&logoColor=white">
+<p>
   <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
 </p>
 
 **기타 기술**:
-<p align="center">
+<p>
   <img src="https://img.shields.io/badge/python-3776AB?style=for-the-badge&logo=python&logoColor=white">
 </p>
 
