@@ -35,6 +35,7 @@
 
 **데이터베이스**:
 <p align="center">
+  <img src="https://img.shields.io/badge/Amazon RDS-FF8000?style=for-the-badge&logo=amarzonrds&logoColor=white">
   <img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
 </p>
 
